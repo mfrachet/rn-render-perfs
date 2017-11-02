@@ -1,10 +1,18 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Pane from './pane';
 import PlayPause from './playPause';
-import Perf from 'ReactPerf';
+
+const style = StyleSheet.create({
+  paneButton: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    height: 48,
+    width: 48,
+  },
+});
 
 export default class RnRenderPerf extends Component {
   constructor(props) {
@@ -18,12 +26,12 @@ export default class RnRenderPerf extends Component {
 
   handlePlay() {
     this.setState({ isRecording: true, isPaneDisplayed: false });
-    Perf.start();
+    this.props.monitor.start();
   }
 
   handlePause() {
     this.setState({ isRecording: false, isPaneDisplayed: true });
-    Perf.stop();
+    this.props.monitor.stop();
   }
 
   handlePaneClose() {
@@ -34,9 +42,9 @@ export default class RnRenderPerf extends Component {
     const { isPaneDisplayed } = this.state;
 
     return (
-      <View>
+      <View style={style.paneButton}>
         {isPaneDisplayed ? (
-          <Pane onClose={this.handlePaneClose} />
+          <Pane onClose={this.handlePaneClose} monitor={this.props.monitor} />
         ) : (
           <PlayPause onPlay={this.handlePlay} onPause={this.handlePause} />
         )}
@@ -44,3 +52,10 @@ export default class RnRenderPerf extends Component {
     );
   }
 }
+
+RnRenderPerf.propTypes = {
+  monitor: PropTypes.shape({
+    start: PropTypes.func.isRequired,
+    stop: PropTypes.func.isRequired,
+  }).isRequired,
+};

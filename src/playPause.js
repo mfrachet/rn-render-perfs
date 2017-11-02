@@ -1,6 +1,23 @@
-import React, { Component } from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
+
+const style = StyleSheet.create({
+  button: {
+    padding: 20,
+    borderTopRightRadius: 5
+  },
+  pause: {
+    backgroundColor: "#E91E63"
+  },
+  play: {
+    backgroundColor: "#3F51B5"
+  },
+  text: {
+    color: "#fff",
+    fontSize: 12
+  }
+});
 
 export default class PlayPause extends Component {
   constructor(props) {
@@ -12,14 +29,15 @@ export default class PlayPause extends Component {
 
   handlePress() {
     const { isRecording } = this.state;
+    const { onPause, onPlay } = this.props;
 
     if (isRecording) {
-      this.props.onPause();
+      onPause();
     } else {
-      this.props.onPlay();
+      onPlay();
     }
 
-    this.setState({ isRecording: !this.state.isRecording });
+    this.setState({ isRecording: !isRecording });
   }
 
   render() {
@@ -28,9 +46,21 @@ export default class PlayPause extends Component {
     return (
       <View>
         {isRecording ? (
-          <TouchableOpacity testID="btn-pause" onPress={this.handlePress} />
+          <TouchableOpacity
+            testID="btn-pause"
+            onPress={this.handlePress}
+            style={[style.button, style.pause]}
+          >
+            <Text style={style.text}>■</Text>
+          </TouchableOpacity>
         ) : (
-          <TouchableOpacity testID="btn-play" onPress={this.handlePress} />
+          <TouchableOpacity
+            testID="btn-play"
+            onPress={this.handlePress}
+            style={[style.button, style.play]}
+          >
+            <Text style={style.text}>▶</Text>
+          </TouchableOpacity>
         )}
       </View>
     );
@@ -39,5 +69,5 @@ export default class PlayPause extends Component {
 
 PlayPause.propTypes = {
   onPlay: PropTypes.func.isRequired,
-  onPause: PropTypes.func.isRequired,
+  onPause: PropTypes.func.isRequired
 };

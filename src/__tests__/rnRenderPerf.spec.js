@@ -2,15 +2,9 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Perf from 'ReactPerf';
 import RnRenderPerf from './../rnRenderPerf';
 import Pane from './../pane';
 import PlayPause from './../playPause';
-
-jest.mock('ReactPerf', () => ({
-  start: jest.fn(),
-  stop: jest.fn(),
-}));
 
 /** @test {RnRenderPerf} */
 describe('RnRenderPerf#render', () => {
@@ -18,9 +12,18 @@ describe('RnRenderPerf#render', () => {
   let instance;
   let playButton;
   let pane;
+  let monitorSpy;
 
   beforeEach(() => {
-    wrapper = shallow(<RnRenderPerf />);
+    monitorSpy = {
+      start: jest.fn(),
+      stop: jest.fn(),
+      printWasted: jest.fn(),
+      printInclusive: jest.fn(),
+      printExclusive: jest.fn(),
+      printOperations: jest.fn(),
+    };
+    wrapper = shallow(<RnRenderPerf monitor={monitorSpy} />);
     instance = wrapper.instance();
 
     playButton = wrapper.find(PlayPause);
@@ -45,14 +48,14 @@ describe('RnRenderPerf#render', () => {
       expect(instance.state).toEqual({ isRecording: false, isPaneDisplayed: false });
     });
 
-    it('should have called Perf.start when clicking handlePlay', () => {
+    it('should have called monitorSpy.start when clicking handlePlay', () => {
       instance.handlePlay();
-      expect(Perf.start).toHaveBeenCalled();
+      expect(monitorSpy.start).toHaveBeenCalled();
     });
 
-    it('should have called Perf.stop when clicking handlePause', () => {
+    it('should have called monitorSpy.stop when clicking handlePause', () => {
       instance.handlePause();
-      expect(Perf.stop).toHaveBeenCalled();
+      expect(monitorSpy.stop).toHaveBeenCalled();
     });
   });
 
