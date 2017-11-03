@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
-import { View, Modal } from "react-native";
-import PropTypes from "prop-types";
-import Style from "./styles/pane";
-import PaneItem from "./paneItem";
+import React, { PureComponent } from 'react';
+import { View, Modal } from 'react-native';
+import PropTypes from 'prop-types';
+import Style from './styles/pane';
+import PaneItem from './paneItem';
 
 export default class Pane extends PureComponent {
   constructor(props) {
@@ -77,6 +77,6 @@ Pane.propTypes = {
     printWasted: PropTypes.func.isRequired,
     printInclusive: PropTypes.func.isRequired,
     printExclusive: PropTypes.func.isRequired,
-    printOperations: PropTypes.func.isRequired
-  }).isRequired
+    printOperations: PropTypes.func.isRequired,
+  }).isRequired,
 };
