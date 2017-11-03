@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 const style = StyleSheet.create({
   button: {
     padding: 20,
-    borderTopRightRadius: 5
+    borderTopRightRadius: 5,
   },
   pause: {
-    backgroundColor: "#E91E63"
+    backgroundColor: '#E91E63',
   },
   play: {
-    backgroundColor: "#3F51B5"
+    backgroundColor: '#3F51B5',
   },
   text: {
-    color: "#fff",
-    fontSize: 12
-  }
+    color: '#fff',
+    fontSize: 12,
+  },
 });
 
 export default class PlayPause extends Component {
@@ -69,5 +69,5 @@ export default class PlayPause extends Component {
 
 PlayPause.propTypes = {
   onPlay: PropTypes.func.isRequired,
-  onPause: PropTypes.func.isRequired
+  onPause: PropTypes.func.isRequired,
 };
