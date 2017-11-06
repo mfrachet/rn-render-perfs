@@ -51,3 +51,8 @@ With the previous code example, you can access to these information (from [react
 - `Print Inclusive`: Print the overall time taken by React
 - `Print Exclusive`: “Exclusive” times don’t include the times taken to mount the components: processing props, calling componentWillMount and componentDidMount, etc.
 - `Print operations`: Prints the underlying manipulations
+
+--- 
+
+
+*With the help of [@flepretre](https://github.com/flepretre) & [@kennydee](https://github.com/kennydee)*
