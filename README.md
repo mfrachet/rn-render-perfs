@@ -2,9 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/mfrachet/rn-render-perfs/badge.svg?branch=master)](https://coveralls.io/github/mfrachet/rn-render-perfs?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Measure React rendering lifecycles using controls
-
-Component on top of `ReactPerfs` (equivalent to [react-addons-perfs](https://reactjs.org/docs/perf.html) for React) that helps to measure rendering lifecycles.
+Measure React rendering lifecycles using controls using a simple component
 
 ---
 <img src="https://img4.hostingpics.net/pics/549535badperfs.gif" />
