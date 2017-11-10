@@ -13,6 +13,7 @@
     "test:auto": "./node_modules/.bin/jest --watch"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.2",    
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "coveralls": "^2.13.1",

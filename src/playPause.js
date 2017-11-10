@@ -23,11 +23,9 @@ export default class PlayPause extends Component {
   constructor(props) {
     super(props);
     this.state = { isRecording: false };
-
-    this.handlePress = this.handlePress.bind(this);
   }
 
-  handlePress() {
+  handlePress = () => {
     const { isRecording } = this.state;
     const { onPause, onPlay } = this.props;
 
