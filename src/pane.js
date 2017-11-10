@@ -7,22 +7,22 @@ import PaneItem from './paneItem';
 export default class Pane extends PureComponent {
   printWasted = () => {
     this.props.monitor.printWasted();
-  }
+  };
 
   printInclusive = () => {
     this.props.monitor.printInclusive();
-  }
+  };
 
   printExclusive = () => {
     this.props.monitor.printExclusive();
-  }
+  };
 
   printOps = () => {
     this.props.monitor.printOperations();
-  }
+  };
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, monitor } = this.props;
     return (
       <Modal transparent onRequestClose={onClose} animationType="slide">
         <View style={Style.container}>
@@ -40,17 +40,21 @@ export default class Pane extends PureComponent {
                 content="Print inclusive"
                 bordered
               />
-              <PaneItem
-                testID="btn-exclusive"
-                onPress={this.printExclusive}
-                content="Print exclusive"
-                bordered
-              />
-              <PaneItem
-                testID="btn-operations"
-                onPress={this.printOps}
-                content="Print Operations"
-              />
+              {monitor.printExclusive && (
+                <PaneItem
+                  testID="btn-exclusive"
+                  onPress={this.printExclusive}
+                  content="Print exclusive"
+                  bordered
+                />
+              )}
+              {monitor.printOperations && (
+                <PaneItem
+                  testID="btn-operations"
+                  onPress={this.printOps}
+                  content="Print Operations"
+                />
+              )}
             </View>
             <View style={Style.pane}>
               <PaneItem testID="pane-close" onPress={onClose} content="Close" />
@@ -67,7 +71,7 @@ Pane.propTypes = {
   monitor: PropTypes.shape({
     printWasted: PropTypes.func.isRequired,
     printInclusive: PropTypes.func.isRequired,
-    printExclusive: PropTypes.func.isRequired,
-    printOperations: PropTypes.func.isRequired,
+    printExclusive: PropTypes.func,
+    printOperations: PropTypes.func,
   }).isRequired,
 };
