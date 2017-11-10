@@ -5,28 +5,19 @@ import Style from './styles/pane';
 import PaneItem from './paneItem';
 
 export default class Pane extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.printWasted = this.printWasted.bind(this);
-    this.printInclusive = this.printInclusive.bind(this);
-    this.printExclusive = this.printExclusive.bind(this);
-    this.printOps = this.printOps.bind(this);
-  }
-
-  printWasted() {
+  printWasted = () => {
     this.props.monitor.printWasted();
   }
 
-  printInclusive() {
+  printInclusive = () => {
     this.props.monitor.printInclusive();
   }
 
-  printExclusive() {
+  printExclusive = () => {
     this.props.monitor.printExclusive();
   }
 
-  printOps() {
+  printOps = () => {
     this.props.monitor.printOperations();
   }
 

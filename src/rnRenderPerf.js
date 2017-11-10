@@ -18,23 +18,19 @@ export default class RnRenderPerf extends Component {
   constructor(props) {
     super(props);
     this.state = { isRecording: false, isPaneDisplayed: false };
-
-    this.handlePlay = this.handlePlay.bind(this);
-    this.handlePause = this.handlePause.bind(this);
-    this.handlePaneClose = this.handlePaneClose.bind(this);
   }
 
-  handlePlay() {
+  handlePlay = () => {
     this.setState({ isRecording: true, isPaneDisplayed: false });
     this.props.monitor.start();
   }
 
-  handlePause() {
+  handlePause = () => {
     this.setState({ isRecording: false, isPaneDisplayed: true });
     this.props.monitor.stop();
   }
 
-  handlePaneClose() {
+  handlePaneClose = () => {
     this.setState({ isRecording: false, isPaneDisplayed: false });
   }
 
