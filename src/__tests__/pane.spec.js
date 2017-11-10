@@ -47,16 +47,35 @@ describe('Pane', () => {
       expect(wastedButton.prop('testID')).toEqual('btn-wasted');
     });
 
-    it('should have a inclusive button display', () => {
+    it('should have an inclusive button display', () => {
       expect(inclusiveButton.prop('testID')).toEqual('btn-inclusive');
     });
 
-    it('should have a exclusive button display', () => {
+    it('should have an exclusive button display', () => {
       expect(exclusiveButton.prop('testID')).toEqual('btn-exclusive');
     });
 
-    it('should have a opeartions button display', () => {
+    it('should have an operations button display', () => {
       expect(operationsButton.prop('testID')).toEqual('btn-operations');
+    });
+
+    it('shouldnt have an exlusive button if printExlusive isnt provided by the monitor', () => {
+      monitorSpy = {
+        printWasted: jest.fn(),
+        printInclusive: jest.fn(),
+        printOperations: jest.fn(),
+      };
+      wrapper = shallow(<Pane onClose={spyOnClose} monitor={monitorSpy} />);
+      expect(wrapper.find({ testID: 'btn-exclusive' }).length).toEqual(0);
+    });
+
+    it('shouldnt have an operations button if printOperations isnt provided by the monitor', () => {
+      monitorSpy = {
+        printWasted: jest.fn(),
+        printInclusive: jest.fn(),
+      };
+      wrapper = shallow(<Pane onClose={spyOnClose} monitor={monitorSpy} />);
+      expect(wrapper.find({ testID: 'btn-operations' }).length).toEqual(0);
     });
   });
 
